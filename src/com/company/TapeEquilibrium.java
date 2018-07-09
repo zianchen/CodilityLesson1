@@ -9,11 +9,18 @@ public class TapeEquilibrium {
     for (int i = 1; i < N; i++) {
       prefix[i] += prefix[i-1] + A[i];
     }
-    int min = prefix[N-1];
-    for (int j = 0; j < N; j++) {
+    int min = Integer.MAX_VALUE;
+    for (int j = 0; j < N - 1; j++) {
       int diff = Math.abs(prefix[j] - (prefix[N-1] - prefix[j]));
       min = Math.min(min, diff);
     }
-    return min;
+    return min == Integer.MAX_VALUE ? 0 : min;
+  }
+
+  public static void main(String[] args) {
+    TapeEquilibrium te = new TapeEquilibrium();
+    int[] input = new int[]{-1000, 1000};
+    int res = te.solution(input);
+    System.out.println(res);
   }
 }
